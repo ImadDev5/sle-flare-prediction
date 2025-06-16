@@ -87,11 +87,7 @@ TAGT combines three key components:
 ## 📖 Citation
 
 ```bibtex
-@article{tagt2024,
-  title={TAGT: Temporal Attention Graph Transformer for Early Prediction of Systemic Lupus Erythematosus Flares Using Multi-Modal Genomic and Clinical Data},
-  author={ImadDev5},
-  journal={[Journal Name]},
-  year={2024}
+Soon
 }
 ```
 
