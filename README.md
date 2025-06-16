@@ -30,7 +30,7 @@ TAGT (Temporal Attention Graph Transformer) achieves **96.3% AUC-ROC** in predic
 ### Installation
 
 ```bash
-git clone https://github.com/imaduddin-dev/sle-flare-prediction.git
+git clone https://github.com/ImadDev5/sle-flare-prediction.git
 cd sle-flare-prediction
 pip install -r requirements.txt
 ```
@@ -89,7 +89,7 @@ TAGT combines three key components:
 ```bibtex
 @article{tagt2024,
   title={TAGT: Temporal Attention Graph Transformer for Early Prediction of Systemic Lupus Erythematosus Flares Using Multi-Modal Genomic and Clinical Data},
-  author={Imaduddin},
+  author={ImadDev5},
   journal={[Journal Name]},
   year={2024}
 }
