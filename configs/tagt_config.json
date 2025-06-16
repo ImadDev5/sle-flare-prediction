@@ -1,0 +1,27 @@
+{
+    "model": {
+        "name": "TAGT",
+        "n_genes": 1000,
+        "hidden_dim": 128,
+        "n_heads": 4,
+        "dropout": 0.1
+    },
+    "training": {
+        "batch_size": 8,
+        "learning_rate": 0.001,
+        "weight_decay": 1e-5,
+        "epochs": 50,
+        "early_stopping_patience": 10
+    },
+    "data": {
+        "train_split": 0.6,
+        "val_split": 0.2,
+        "test_split": 0.2,
+        "random_seed": 42
+    },
+    "paths": {
+        "data_dir": "data/processed",
+        "model_dir": "models",
+        "results_dir": "results"
+    }
+}

@@ -1,0 +1,9 @@
+{
+  "feature_dim": 1000,
+  "hidden_dim": 64,
+  "num_heads": 4,
+  "num_layers": 2,
+  "best_epoch": 8,
+  "best_val_auc": 0.42857142857142855,
+  "training_device": "cpu"
+}
