@@ -74,8 +74,29 @@ python experiments/analysis.py
 TAGT combines three key components:
 
 1. **Graph Neural Networks** - Model protein-protein interactions
-2. **Temporal Attention** - Capture disease progression patterns  
+2. **Temporal Attention** - Capture disease progression patterns
 3. **Multi-modal Fusion** - Integrate genomic and clinical data
+
+## 🎧 Multimedia Resources
+
+### **📊 Project Overview**
+- **[Mind Map](docs/multimedia/project_mindmap.png)** - Visual overview of the TAGT architecture and key concepts
+- **[Audio Guide](docs/multimedia/project_audio_guide.mp3)** - Complete project walkthrough (podcast-style explanation)
+
+*Perfect for understanding the project at different levels - visual learners can explore the mind map, while the audio guide provides in-depth technical discussion.*
+
+## 📚 Comprehensive Documentation
+
+### **Detailed Q&A for Different Audiences**
+- **[ML Experts](docs/FAQ_ML_EXPERTS.md)** - Deep technical dive into architecture, implementation, and performance
+- **[Software Developers](docs/FAQ_SOFTWARE_DEVELOPERS.md)** - Code structure, deployment, and engineering best practices
+- **[Medical Professionals](docs/FAQ_MEDICAL_PROFESSIONALS.md)** - Clinical validation, implementation, and patient care integration
+- **[Tech-Savvy Non-Specialists](docs/FAQ_TECH_SAVVY_NON_SPECIALISTS.md)** - Accessible technical overview with practical context
+- **[Patent Judges](docs/FAQ_PATENT_JUDGES.md)** - Intellectual property, novelty assessment, and prior art analysis
+- **[Journal Reviewers](docs/FAQ_JOURNAL_REVIEWERS.md)** - Academic rigor, methodology, and research contribution
+
+### **Research Roadmap**
+- **[Future Work & Research Directions](docs/FUTURE_WORK_ROADMAP.md)** - Comprehensive roadmap for TAGT evolution and impact
 
 ## 📊 Clinical Impact
 
