@@ -1,0 +1,165 @@
+# Pre-commit hooks configuration for SLE TAGT project
+# Ensures code quality before each commit
+
+repos:
+  # Code formatting
+  - repo: https://github.com/psf/black
+    rev: 23.12.1
+    hooks:
+      - id: black
+        language_version: python3
+        args: [--line-length=88]
+        exclude: ^(venv|build|dist)/
+
+  # Import sorting
+  - repo: https://github.com/pycqa/isort
+    rev: 5.13.2
+    hooks:
+      - id: isort
+        args: [--profile=black, --line-length=88]
+        exclude: ^(venv|build|dist)/
+
+  # Linting
+  - repo: https://github.com/pycqa/flake8
+    rev: 7.0.0
+    hooks:
+      - id: flake8
+        args: [--max-line-length=88, --extend-ignore=E203,W503]
+        exclude: ^(venv|build|dist)/
+        additional_dependencies:
+          - flake8-docstrings
+          - flake8-bugbear
+          - flake8-comprehensions
+
+  # Type checking
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.8.0
+    hooks:
+      - id: mypy
+        args: [--ignore-missing-imports, --strict-optional]
+        exclude: ^(venv|build|dist|tests)/
+        additional_dependencies:
+          - types-requests
+          - types-PyYAML
+
+  # Security scanning
+  - repo: https://github.com/pycqa/bandit
+    rev: 1.7.5
+    hooks:
+      - id: bandit
+        args: [-r, --format=custom, --confidence-level=medium]
+        exclude: ^(venv|tests)/
+
+  # General code quality
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      # File formatting
+      - id: trailing-whitespace
+        exclude: ^(.*\.md|.*\.txt)$
+      - id: end-of-file-fixer
+        exclude: ^(venv|build|dist)/
+      - id: check-yaml
+        exclude: ^(venv|build|dist)/
+      - id: check-json
+        exclude: ^(venv|build|dist)/
+      - id: check-toml
+        exclude: ^(venv|build|dist)/
+      
+      # Python specific
+      - id: check-ast
+        exclude: ^(venv|build|dist)/
+      - id: check-docstring-first
+        exclude: ^(venv|build|dist|tests)/
+      - id: debug-statements
+        exclude: ^(venv|build|dist)/
+      - id: name-tests-test
+        args: [--pytest-test-first]
+        exclude: ^(venv|build|dist)/
+      
+      # Security
+      - id: detect-private-key
+        exclude: ^(venv|build|dist)/
+      - id: check-added-large-files
+        args: [--maxkb=1000]
+        exclude: ^(data|models|venv|build|dist)/
+      
+      # Git
+      - id: check-merge-conflict
+      - id: check-case-conflict
+      - id: mixed-line-ending
+        args: [--fix=lf]
+
+  # Documentation
+  - repo: https://github.com/pycqa/pydocstyle
+    rev: 6.3.0
+    hooks:
+      - id: pydocstyle
+        args: [--convention=google]
+        exclude: ^(venv|build|dist|tests)/
+
+  # Jupyter notebooks (if any)
+  - repo: https://github.com/nbQA-dev/nbQA
+    rev: 1.7.1
+    hooks:
+      - id: nbqa-black
+        exclude: ^(venv|build|dist)/
+      - id: nbqa-isort
+        args: [--profile=black]
+        exclude: ^(venv|build|dist)/
+      - id: nbqa-flake8
+        args: [--max-line-length=88, --extend-ignore=E203,W503]
+        exclude: ^(venv|build|dist)/
+
+  # Medical AI specific checks
+  - repo: local
+    hooks:
+      # Check for hardcoded sensitive data
+      - id: check-medical-data-privacy
+        name: Check Medical Data Privacy
+        entry: python -c "import re, sys; [sys.exit(1) for f in sys.argv[1:] if re.search(r'(patient_id|ssn|medical_record|phi_)', open(f).read(), re.I)]"
+        language: system
+        files: \.py$
+        exclude: ^(venv|build|dist|tests)/
+      
+      # Check for proper random seed setting
+      - id: check-reproducibility
+        name: Check Model Reproducibility
+        entry: python -c "import re, sys; content = ''.join(open(f).read() for f in sys.argv[1:]); sys.exit(0 if re.search(r'(torch\.manual_seed|np\.random\.seed|random\.seed)', content) else 1)"
+        language: system
+        files: ^src/.*\.py$
+        exclude: ^(venv|build|dist|tests)/
+      
+      # Check for proper device placement in PyTorch
+      - id: check-device-placement
+        name: Check PyTorch Device Placement
+        entry: python -c "import re, sys; [print(f'Warning: {f} may need device placement check') for f in sys.argv[1:] if 'torch' in open(f).read() and not re.search(r'\.to\(device\)|\.cuda\(\)', open(f).read())]"
+        language: system
+        files: ^src/.*\.py$
+        exclude: ^(venv|build|dist|tests)/
+      
+      # Check for model.eval() in inference code
+      - id: check-model-eval-mode
+        name: Check Model Eval Mode
+        entry: python -c "import re, sys; [print(f'Warning: {f} may need model.eval() for inference') for f in sys.argv[1:] if 'inference' in f.lower() and 'model(' in open(f).read() and 'model.eval()' not in open(f).read()]"
+        language: system
+        files: ^src/.*\.py$
+        exclude: ^(venv|build|dist|tests)/
+
+# Configuration
+default_stages: [commit]
+fail_fast: false
+minimum_pre_commit_version: 3.0.0
+
+# CI configuration
+ci:
+  autofix_commit_msg: |
+    [pre-commit.ci] auto fixes from pre-commit hooks
+    
+    for more information, see https://pre-commit.ci
+  autofix_prs: true
+  autoupdate_branch: ''
+  autoupdate_commit_msg: '[pre-commit.ci] pre-commit autoupdate'
+  autoupdate_schedule: weekly
+  skip: []
+  submodules: false

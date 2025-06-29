@@ -1,0 +1,71 @@
+{
+  "model_name": "UltimateTAGT",
+  "description": "Ultimate TAGT model using real GSE49454 and STRING PPI data",
+  
+  "model_architecture": {
+    "n_genes": 1000,
+    "hidden_dim": 512,
+    "num_heads": 16,
+    "num_layers": 6,
+    "clinical_dim": 15,
+    "dropout": 0.15,
+    "num_pathways": 100
+  },
+  
+  "training": {
+    "batch_size": 8,
+    "learning_rate": 1e-4,
+    "weight_decay": 1e-5,
+    "epochs": 100,
+    "use_amp": true,
+    "accumulation_steps": 4,
+    "warmup_epochs": 10,
+    "patience": 15
+  },
+  
+  "cross_validation": {
+    "n_splits": 5,
+    "shuffle": true,
+    "random_state": 42
+  },
+  
+  "optimization": {
+    "optimizer": "AdamW",
+    "scheduler": "cosine_annealing",
+    "min_lr": 1e-7,
+    "gradient_clip": 1.0
+  },
+  
+  "data": {
+    "use_real_data_only": true,
+    "sequences_path": "data/integrated/sequences_real.pkl",
+    "labels_path": "data/integrated/labels_real.npy",
+    "adjacency_path": "data/processed/adjacency_real.npz",
+    "normalize_features": true,
+    "augmentation": {
+      "enabled": true,
+      "noise_level": 0.02,
+      "dropout_prob": 0.05
+    }
+  },
+  
+  "logging": {
+    "log_level": "INFO",
+    "log_file": "ultimate_training.log",
+    "save_every_n_epochs": 5,
+    "plot_metrics": true
+  },
+  
+  "hardware": {
+    "gpu": "RTX3050",
+    "mixed_precision": true,
+    "pin_memory": true,
+    "num_workers": 0
+  },
+  
+  "reproducibility": {
+    "seed": 42,
+    "deterministic": true,
+    "benchmark": false
+  }
+}
