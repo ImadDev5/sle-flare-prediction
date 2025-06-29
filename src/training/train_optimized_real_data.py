@@ -18,7 +18,7 @@ from typing import Dict
 import gc
 
 # Add project root to path
-sys.path.append(str(Path(__file__).parent))
+sys.path.append(str(Path(__file__).parent.parent.parent))
 from src.models.optimized_tagt import create_optimized_model
 
 # Configure logging
@@ -26,7 +26,7 @@ logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler('optimized_training.log'),
+        logging.FileHandler('results/optimized_training.log'),
         logging.StreamHandler()
     ]
 )
@@ -307,13 +307,13 @@ class OptimizedTrainer:
             # Save best model
             if test_auc > best_test_auc:
                 best_test_auc = test_auc
-                torch.save(model.state_dict(), 'best_optimized_model.pth')
+        torch.save(model.state_dict(), 'results/best_optimized_model.pth')
                 logger.info(f"New best model saved! AUC: {test_auc:.4f}")
         
         logger.info(f"Training completed! Best AUC: {best_test_auc:.4f}")
         
         # Final evaluation
-        model.load_state_dict(torch.load('best_optimized_model.pth'))
+        model.load_state_dict(torch.load('results/best_optimized_model.pth'))
         final_metrics = self.evaluate_model(model, test_loader, adjacency_tensor)
         
         logger.info("FINAL RESULTS:")
@@ -328,7 +328,7 @@ class OptimizedTrainer:
             'config': self.config
         }
         
-        with open('optimized_results.json', 'w') as f:
+        with open('results/optimized_results.json', 'w') as f:
             json.dump(results, f, indent=2)
         
         return results

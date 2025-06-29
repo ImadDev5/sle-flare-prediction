@@ -33,7 +33,7 @@ from typing import Dict
 import gc
 
 # Add project root to path
-sys.path.append(str(Path(__file__).parent))
+sys.path.append(str(Path(__file__).parent.parent))
 from src.models.optimized_tagt import create_optimized_model
 
 # Configure logging
@@ -41,7 +41,7 @@ logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler('cross_validation.log'),
+        logging.FileHandler('results/cross_validation.log'),
         logging.StreamHandler()
     ]
 )
@@ -321,7 +321,7 @@ class CrossValidator:
             logger.info(f"{metric.upper():>10}: {mean_val:.4f} ± {std_val:.4f}")
         
         # Save results
-        with open('cross_validation_results.json', 'w') as f:
+        with open('results/cross_validation_results.json', 'w') as f:
             json.dump(final_results, f, indent=2)
         
         logger.info("\nCross-validation completed successfully!")
