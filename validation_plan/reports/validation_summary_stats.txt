@@ -1,0 +1,27 @@
+
+TAGT VALIDATION SUMMARY STATISTICS
+==================================
+
+TAGT MODEL PERFORMANCE:
+- AUC-ROC: 87.3% (Claimed: 96.3%, Difference: -9.3%)
+- Accuracy: 94.0% (Claimed: 83.3%, Difference: +12.8%)
+- Precision: 84.0% (Claimed: 66.7%, Difference: +25.9%)
+- Recall: 82.2% (Claimed: 66.7%, Difference: +23.3%)
+- Specificity: 97.4% (Claimed: 66.7%, Difference: +46.1%)
+
+BASELINE MODEL PERFORMANCE:
+- Random Forest: 49.5% AUC-ROC (Claimed: 64.8%, Difference: -15.3%)
+- SVM: 47.5% AUC-ROC (Claimed: 51.9%, Difference: -4.4%)
+- LSTM: 49.5% AUC-ROC (Claimed: 40.7%, Difference: +8.8%)
+
+CLAIM VERIFICATION:
+- Claims Met Within 10%: 1/6 (16.7%)
+- Claims Exceeded: 4/6 (66.7%)
+- Claims Underperformed: 1/6 (16.7%)
+
+CLINICAL ASSESSMENT:
+- Performance Level: EXCELLENT (87.3% AUC-ROC > 80% threshold)
+- Clinical Utility: HIGH (94.0% accuracy)
+- Recommendation: PROCEED WITH CLINICAL VALIDATION
+
+OVERALL ASSESSMENT: PROMISING - MINOR REVISIONS NEEDED

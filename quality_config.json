@@ -1,0 +1,251 @@
+{
+  "automation_settings": {
+    "project_name": "SLE TAGT",
+    "version": "1.0.0",
+    "description": "Temporal Attention Graph Transformer for SLE Flare Prediction",
+    "enable_gpu_optimization": true,
+    "parallel_processing": true,
+    "max_workers": 4
+  },
+  "code_formatting": {
+    "black": {
+      "enabled": true,
+      "line_length": 88,
+      "target_versions": ["py38", "py39", "py310"],
+      "skip_string_normalization": false,
+      "exclude": "/(venv|build|dist)/"
+    },
+    "isort": {
+      "enabled": true,
+      "profile": "black",
+      "multi_line_output": 3,
+      "line_length": 88,
+      "known_third_party": ["torch", "numpy", "pandas", "sklearn"]
+    },
+    "autopep8": {
+      "enabled": true,
+      "max_line_length": 88,
+      "aggressive": 1
+    }
+  },
+  "linting": {
+    "flake8": {
+      "enabled": true,
+      "max_line_length": 88,
+      "max_complexity": 10,
+      "ignore": ["E203", "W503", "E501"],
+      "exclude": ["venv", "build", "dist", "__pycache__"],
+      "per_file_ignores": {
+        "__init__.py": ["F401"]
+      }
+    },
+    "pylint": {
+      "enabled": false,
+      "rcfile": ".pylintrc",
+      "disable": ["C0114", "C0115", "C0116"]
+    }
+  },
+  "type_checking": {
+    "mypy": {
+      "enabled": true,
+      "python_version": "3.8",
+      "warn_return_any": true,
+      "warn_unused_configs": true,
+      "disallow_untyped_defs": false,
+      "ignore_missing_imports": true,
+      "strict_optional": true,
+      "exclude": ["venv", "build", "tests"]
+    }
+  },
+  "security_scanning": {
+    "bandit": {
+      "enabled": true,
+      "confidence_level": "medium",
+      "severity_level": "medium",
+      "exclude_dirs": ["venv", "tests"],
+      "skips": ["B101"],
+      "format": "json"
+    },
+    "safety": {
+      "enabled": true,
+      "ignore_vulnerabilities": [],
+      "output_format": "json"
+    }
+  },
+  "testing": {
+    "pytest": {
+      "enabled": true,
+      "test_directory": "tests",
+      "coverage_threshold": 80,
+      "coverage_fail_under": 70,
+      "markers": ["slow", "integration", "unit"],
+      "addopts": "-v --tb=short"
+    },
+    "coverage": {
+      "enabled": true,
+      "source": ["src"],
+      "omit": ["*/tests/*", "*/venv/*", "setup.py"],
+      "show_missing": true,
+      "skip_covered": false
+    }
+  },
+  "complexity_analysis": {
+    "radon": {
+      "enabled": true,
+      "cc_threshold": "B",
+      "mi_threshold": "B",
+      "exclude": ["venv", "tests"]
+    },
+    "vulture": {
+      "enabled": true,
+      "min_confidence": 80,
+      "exclude": ["venv", "build"]
+    }
+  },
+  "documentation": {
+    "sphinx": {
+      "enabled": true,
+      "source_dir": "docs/source",
+      "build_dir": "docs/build",
+      "autodoc": true,
+      "napoleon": true,
+      "theme": "sphinx_rtd_theme"
+    },
+    "docstring_coverage": {
+      "enabled": true,
+      "threshold": 75,
+      "exclude": ["tests", "venv"]
+    }
+  },
+  "gpu_optimization": {
+    "cuda_checks": {
+      "enabled": true,
+      "check_memory_usage": true,
+      "check_utilization": true,
+      "memory_threshold_gb": 8,
+      "utilization_threshold_percent": 80
+    },
+    "pytorch_optimization": {
+      "enabled": true,
+      "check_mixed_precision": true,
+      "check_dataloader_workers": true,
+      "check_pin_memory": true,
+      "recommended_batch_sizes": {
+        "low_memory": 16,
+        "medium_memory": 32,
+        "high_memory": 64
+      }
+    }
+  },
+  "monitoring": {
+    "file_watching": {
+      "enabled": true,
+      "watch_directories": ["src", "tests"],
+      "watch_extensions": [".py", ".json", ".yaml"],
+      "ignore_patterns": ["__pycache__", "*.pyc", ".git"]
+    },
+    "performance_tracking": {
+      "enabled": true,
+      "track_execution_time": true,
+      "track_memory_usage": true,
+      "track_gpu_usage": true
+    }
+  },
+  "reporting": {
+    "output_formats": ["html", "json", "txt"],
+    "include_system_info": true,
+    "include_gpu_info": true,
+    "include_performance_metrics": true,
+    "generate_charts": true,
+    "email_notifications": {
+      "enabled": false,
+      "smtp_server": "",
+      "recipients": []
+    }
+  },
+  "git_integration": {
+    "pre_commit_hooks": {
+      "enabled": true,
+      "hooks": [
+        "black",
+        "isort",
+        "flake8",
+        "mypy",
+        "bandit",
+        "pytest"
+      ]
+    },
+    "commit_message_validation": {
+      "enabled": true,
+      "pattern": "^(feat|fix|docs|style|refactor|test|chore): .+",
+      "max_length": 72
+    }
+  },
+  "ci_cd_integration": {
+    "github_actions": {
+      "enabled": true,
+      "workflow_file": ".github/workflows/quality.yml",
+      "trigger_on": ["push", "pull_request"]
+    },
+    "quality_gates": {
+      "coverage_threshold": 80,
+      "complexity_threshold": 10,
+      "security_threshold": "medium",
+      "fail_on_error": true
+    }
+  },
+  "custom_rules": {
+    "medical_ai_specific": {
+      "check_data_privacy": true,
+      "check_model_reproducibility": true,
+      "check_clinical_validation": true,
+      "require_ethics_documentation": true
+    },
+    "pytorch_specific": {
+      "check_device_placement": true,
+      "check_gradient_computation": true,
+      "check_model_eval_mode": true,
+      "check_random_seed_setting": true
+    }
+  },
+  "exclusions": {
+    "directories": [
+      "venv",
+      "venv_gpu",
+      "build",
+      "dist",
+      "__pycache__",
+      ".git",
+      "node_modules",
+      "data/raw",
+      "models/checkpoints*"
+    ],
+    "files": [
+      "*.pyc",
+      "*.pyo",
+      "*.pyd",
+      "*.so",
+      "*.egg",
+      "*.egg-info",
+      ".DS_Store",
+      "Thumbs.db"
+    ]
+  },
+  "performance_optimization": {
+    "parallel_execution": {
+      "enabled": true,
+      "max_workers": "auto",
+      "chunk_size": 100
+    },
+    "caching": {
+      "enabled": true,
+      "cache_directory": ".quality_cache",
+      "cache_duration_hours": 24
+    },
+    "incremental_analysis": {
+      "enabled": true,
+      "track_file_changes": true,
+      "analyze_only_changed": true
+    }
+  }
+}

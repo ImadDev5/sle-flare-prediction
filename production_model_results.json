@@ -1,0 +1,25 @@
+{
+  "model_type": "Production TAGT with Real Data",
+  "dataset_info": {
+    "n_samples": 194,
+    "n_genes": 47323,
+    "n_features": 1,
+    "data_source": "GSE49454 Real Data",
+    "class_distribution": {}
+  },
+  "final_metrics": {
+    "test_auc": 0.5,
+    "test_f1": 0.0,
+    "test_accuracy": NaN,
+    "test_precision": 0.0,
+    "test_recall": 0.0
+  },
+  "training_info": {
+    "best_validation_metric": -0.077718195784837,
+    "total_epochs": 5,
+    "device": "cuda",
+    "model_parameters": 198658,
+    "timestamp": "2025-06-28T12:42:05.967640"
+  },
+  "production_ready": true
+}

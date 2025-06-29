@@ -1,0 +1,34 @@
+{
+  "validation_status": {
+    "data_audit": "FAILED",
+    "baseline_models": "FAILED",
+    "tagt_validation": "FAILED",
+    "comprehensive_analysis": "COMPLETED"
+  },
+  "critical_findings": [
+    "\u274c Data audit failed: No module named 'data_audit'",
+    "\u274c Baseline model validation failed: No module named 'baseline_models'",
+    "\u274c TAGT model validation failed: No module named 'tagt_validation'"
+  ],
+  "documented_claims": {
+    "performance": {
+      "auc_roc": 0.963,
+      "accuracy": 0.833,
+      "sensitivity": 0.667,
+      "specificity": 0.667,
+      "precision": 0.667,
+      "recall": 0.667,
+      "f1_score": 0.667
+    },
+    "dataset": {
+      "n_patients": 847,
+      "n_centers": 5,
+      "flare_rate": 0.23
+    },
+    "improvement": {
+      "vs_random_forest": 0.512,
+      "baseline_auc": 0.648
+    }
+  },
+  "results": {}
+}
