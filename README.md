@@ -19,12 +19,19 @@ TAGT (Temporal Attention Graph Transformer) achieves **97.1% AUC-ROC** in predic
 
 ## 🏆 Key Results
 
+### Single Model Performance (June 28-29, 2025)
 | Model | Accuracy | Precision | Recall | F1-Score | AUC-ROC |
 |-------|----------|-----------|--------|----------|---------|
 | **TAGT (Optimized)** | **0.882** | **0.905** | **0.731** | **0.809** | **0.972** |
-| Random Forest | 0.750 | 0.000 | 0.000 | 0.000 | 0.648 |
-| SVM | 0.500 | 0.200 | 0.333 | 0.250 | 0.519 |
-| LSTM | 0.500 | 0.000 | 0.000 | 0.000 | 0.407 |
+
+### Cross-Validation Results (5-Fold CV)
+| Metric | Mean | Std Dev | Individual Folds |
+|--------|------|---------|------------------|
+| **AUC-ROC** | **0.943** | **±0.018** | [0.912, 0.955, 0.958, 0.958, 0.931] |
+| **Accuracy** | **0.892** | **±0.027** | [0.882, 0.855, 0.934, 0.907, 0.880] |
+| **Precision** | **0.915** | **±0.064** | [0.947, 0.941, 1.000, 0.821, 0.864] |
+| **Recall** | **0.759** | **±0.103** | [0.692, 0.615, 0.808, 0.920, 0.760] |
+| **F1-Score** | **0.823** | **±0.053** | [0.800, 0.744, 0.894, 0.868, 0.809] |
 
 ## 🚀 Quick Start
 
@@ -42,15 +49,23 @@ pip install -r requirements.txt
 ```bash
 # Train with real GSE49454 data and optimized architecture
 # Achieves 97.1% AUC-ROC with RTX 3050 optimization
-python train_optimized_real_data.py
+python src/training/train_optimized_real_data.py
 ```
-**Status**: ✅ **VALIDATED** - Achieves documented performance
+**Status**: ✅ **VALIDATED** - Achieves documented performance (June 28, 2025)
+
+#### Cross-Validation Analysis
+```bash
+# Run 5-fold cross-validation with optimized model
+# Achieves 94.3% mean AUC-ROC across folds
+python experiments/cross_validate_optimized.py
+```
+**Status**: ✅ **VALIDATED** - Cross-validation completed (June 29, 2025)
 
 #### Ultimate Model Training
 ```bash
 # Train with advanced features and cross-validation
 # Uses 5-fold cross-validation with real data
-python train_ultimate_real_data_model.py
+python src/training/train_ultimate_real_data_model.py
 ```
 **Status**: ✅ **VALIDATED** - Cross-validation ready
 
@@ -78,14 +93,31 @@ python experiments/analysis.py
 ```
 ├── src/
 │   ├── models/           # TAGT model implementation
+│   │   ├── optimized_tagt.py      # Optimized model (97.1% AUC)
+│   │   ├── ultimate_tagt.py       # Ultimate enhanced model
+│   │   └── tagt_model.py          # Base TAGT implementation
 │   ├── data/            # Data processing utilities
 │   ├── training/        # Training scripts
+│   │   ├── train_optimized_real_data.py      # Optimized training (✅ VALIDATED)
+│   │   ├── train_ultimate_real_data_model.py # Ultimate training
+│   │   └── train.py               # Base training script
 │   └── utils/           # Helper functions
 ├── experiments/         # Experimental analysis
+│   ├── cross_validate_optimized.py    # Cross-validation (✅ VALIDATED)
+│   ├── baseline_comparison.py         # Baseline comparisons
+│   └── ablation_study.py              # Ablation studies
 ├── configs/            # Model configurations
+│   ├── optimized_tagt_config.json     # Optimized model config
+│   └── ultimate_tagt_config.json      # Ultimate model config
 ├── docs/               # Documentation and paper
 ├── data/               # Dataset directory
+│   ├── integrated/     # Processed integrated data
+│   └── processed/      # Preprocessed data
 └── results/            # Output figures and metrics
+    ├── best_optimized_model.pth        # Best trained model (9.78MB)
+    ├── optimized_results.json          # Performance metrics (June 28)
+    ├── cross_validation_results.json   # CV results (June 29)
+    └── *.log                           # Training logs
 ```
 
 ## 🔬 Architecture
