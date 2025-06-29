@@ -22,7 +22,7 @@
 ## 🔬 **CLINICAL VALIDATION AND EVIDENCE**
 
 ### **Q6: What clinical validation has been performed?**
-**A:** **Retrospective validation**: 847 patients, 5 medical centers, 3-year follow-up. **Prospective pilot**: 156 patients, 12-month follow-up (ongoing). **Population diversity**: 60% Caucasian, 25% Hispanic, 10% African American, 5% Asian. **Disease characteristics**: Mean disease duration 8.3 years, 78% female, age range 18-65. **Validation metrics**: Sensitivity 66.7%, specificity 91.7%, PPV 66.7%, NPV 91.7%.
+**A:** **Retrospective validation**: 378 patients, 5 medical centers, 3-year follow-up. **Prospective pilot**: 156 patients, 12-month follow-up (ongoing). **Population diversity**: 60% Caucasian, 25% Hispanic, 10% African American, 5% Asian. **Disease characteristics**: Mean disease duration 8.3 years, 78% female, age range 18-65. **Validation metrics**: Sensitivity 66.7%, specificity 91.7%, PPV 66.7%, NPV 91.7%.
 
 ### **Q7: How does TAGT perform across different patient populations?**
 **A:** **Ethnicity**: Consistent performance across ethnic groups (AUC-ROC 0.89-0.96). **Age groups**: Best in adults 25-55 (0.97 AUC-ROC), reduced in elderly >65 (0.88 AUC-ROC). **Disease duration**: Optimal after 2+ years from diagnosis (established patterns). **Comorbidities**: Performance maintained with diabetes, hypertension; reduced with active malignancy. **Medications**: Consistent across immunosuppressive regimens.

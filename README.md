@@ -11,7 +11,7 @@ A novel deep learning architecture for early prediction of Systemic Lupus Erythe
 
 TAGT (Temporal Attention Graph Transformer) achieves **97.1% AUC-ROC** in predicting SLE flares by integrating:
 
-- **Real gene expression profiles** from GSE49454 dataset (100+ patients)
+- **Real gene expression profiles** from GSE49454 dataset (378 patients)
 - **STRING protein-protein interaction networks** (graph structure)
 - **Clinical parameters** (SLEDAI scores, demographic data)
 - **Temporal disease progression** (attention mechanisms)
