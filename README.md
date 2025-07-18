@@ -225,10 +225,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Contact
 
-- **Author**: [Your Name]
-- **Email**: [your.email@domain.com]
+- **Author**: Mohammed Imaduddin
+- **Email**: imaduddin.dev@gmail.com
 - **GitHub**: [@ImadDev5](https://github.com/ImadDev5)
-- **LinkedIn**: [Your LinkedIn Profile]
+- **LinkedIn**: https://www.linkedin.com/in/md-imaduddin-087aa5265
 
 ---
 
