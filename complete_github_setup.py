@@ -203,7 +203,7 @@ Your TAGT model represents a significant advancement in SLE prediction with:
 **READY FOR JOURNAL SUBMISSION AND CLINICAL TRANSLATION!**
 """
     
-    with open('PROJECT_COMPLETION_SUMMARY.md', 'w') as f:
+    with open('PROJECT_COMPLETION_SUMMARY.md', 'w', encoding='utf-8') as f:
         f.write(summary)
     
     print("📋 Project summary saved to: PROJECT_COMPLETION_SUMMARY.md")

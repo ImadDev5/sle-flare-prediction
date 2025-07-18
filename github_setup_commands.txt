@@ -1,0 +1,36 @@
+
+# GITHUB REPOSITORY SETUP COMMANDS
+# Execute these commands manually in your terminal:
+
+# 1. Create GitHub repository (choose one method):
+
+# METHOD A: Using GitHub CLI (if installed)
+gh repo create ImadDev5/SLE-TAGT-Prediction --public --description "Temporal Attention Graph Transformer for SLE Flare Prediction - 94.3% AUC-ROC"
+
+# METHOD B: Create repository manually on GitHub.com
+# Go to: https://github.com/new
+# Repository name: SLE-TAGT-Prediction
+# Description: Temporal Attention Graph Transformer for SLE Flare Prediction - 94.3% AUC-ROC
+# Make it Public
+# Don't initialize with README (we already have one)
+
+# 2. Add remote origin and push
+git remote add origin https://github.com/ImadDev5/SLE-TAGT-Prediction.git
+git push -u origin main
+
+# 3. Create development branch
+git checkout -b develop
+git push -u origin develop
+
+# 4. Create release tag
+git checkout main
+git tag -a v1.0.0 -m "TAGT v1.0.0: Publication-ready release with 94.3% AUC-ROC"
+git push origin v1.0.0
+
+# 5. Verify repository
+git remote -v
+git status
+git log --oneline -5
+
+# ALTERNATIVE: If you have GitHub token, use HTTPS with token:
+# git remote add origin https://YOUR_TOKEN@github.com/ImadDev5/SLE-TAGT-Prediction.git
