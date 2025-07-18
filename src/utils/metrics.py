@@ -9,7 +9,6 @@ from sklearn.metrics import (
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-
 def calculate_metrics(y_true, y_pred, y_prob=None):
     """Calculate comprehensive evaluation metrics"""
     
@@ -28,7 +27,6 @@ def calculate_metrics(y_true, y_pred, y_prob=None):
     
     return metrics
 
-
 def print_metrics(metrics, model_name="Model"):
     """Print metrics in a formatted way"""
     print(f"\n{model_name} Performance:")
@@ -39,7 +37,6 @@ def print_metrics(metrics, model_name="Model"):
     print(f"F1-Score:  {metrics['f1']:.3f}")
     if 'auc' in metrics:
         print(f"AUC-ROC:   {metrics['auc']:.3f}")
-
 
 def plot_confusion_matrix(y_true, y_pred, save_path=None):
     """Plot confusion matrix"""
@@ -56,7 +53,6 @@ def plot_confusion_matrix(y_true, y_pred, save_path=None):
     if save_path:
         plt.savefig(save_path, dpi=300, bbox_inches='tight')
     plt.show()
-
 
 def bootstrap_confidence_interval(y_true, y_pred, metric_func, n_bootstrap=1000, confidence=0.95):
     """Calculate bootstrap confidence interval for a metric"""
@@ -80,7 +76,6 @@ def bootstrap_confidence_interval(y_true, y_pred, metric_func, n_bootstrap=1000,
     upper = np.percentile(bootstrap_scores, 100 * (1 - alpha / 2))
     
     return lower, upper
-
 
 class MetricsTracker:
     """Track metrics during training"""

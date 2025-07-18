@@ -1,20 +1,3 @@
-#!/usr/bin/env python3
-"""
-🚀 CROSS-VALIDATION FOR OPTIMIZED TAGT MODEL
-==========================================
-
-Comprehensive cross-validation script for the optimized TAGT model
-using real GSE49454 data. This ensures robust performance evaluation.
-
-Features:
-- 5-fold stratified cross-validation
-- Memory-efficient processing
-- Detailed performance statistics
-- Real data only validation
-
-ROBUSTNESS VALIDATION FOR BREAKTHROUGH RESULTS! 💪
-"""
-
 import os
 import sys
 import json
@@ -66,8 +49,7 @@ class OptimizedSLEDataset(Dataset):
         expression = np.array(sequence['expression'], dtype=np.float32)
         current_sledai = float(sequence['current_sledai'])
         
-        # Create temporal sequence (single time step for memory efficiency)
-        gene_expression = torch.FloatTensor(expression).unsqueeze(0)  # [1, n_genes]
+                gene_expression = torch.FloatTensor(expression).unsqueeze(0)  # [1, n_genes]
         
         # Enhanced clinical features
         clinical_features = [
@@ -220,8 +202,7 @@ class CrossValidator:
             logger.info(f"FOLD {fold + 1}/{self.n_splits}")
             logger.info("-" * 40)
             
-            # Create fold datasets
-            train_dataset = torch.utils.data.Subset(full_dataset, train_idx)
+                        train_dataset = torch.utils.data.Subset(full_dataset, train_idx)
             val_dataset = torch.utils.data.Subset(full_dataset, val_idx)
             
             train_loader = DataLoader(
@@ -242,8 +223,7 @@ class CrossValidator:
             
             logger.info(f"Fold {fold + 1}: Train={len(train_dataset)}, Val={len(val_dataset)}")
             
-            # Create and train model
-            model = create_optimized_model(self.config)
+                        model = create_optimized_model(self.config)
             model.to(self.device)
             
             optimizer = optim.AdamW(
@@ -337,8 +317,7 @@ def main():
     # Load optimized config
     config_path = "configs/optimized_tagt_config.json"
     
-    # Create cross-validator
-    cv = CrossValidator(config_path)
+        cv = CrossValidator(config_path)
     
     # Run cross-validation
     results = cv.run_cross_validation()

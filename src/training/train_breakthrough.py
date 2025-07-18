@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Breakthrough training script for TAGT model with enhanced architecture and training.
 
 This script implements a state-of-the-art approach for SLE flare prediction using
@@ -86,7 +85,6 @@ DROPOUT = 0.2
 FOCAL_ALPHA = 0.75  # Weight for positive class in focal loss
 FOCAL_GAMMA = 2.0   # Focusing parameter for focal loss
 
-# Create output directories
 MODEL_OUTPUT_DIR.mkdir(exist_ok=True)
 METRICS_OUTPUT_DIR.mkdir(exist_ok=True)
 
@@ -163,7 +161,6 @@ class FocalLoss(nn.Module):
             return focal_loss.mean()
         return focal_loss.sum()
 
-
 # --- Model Architecture ---
 class PathwayAttention(nn.Module):
     """
@@ -207,11 +204,9 @@ class PathwayAttention(nn.Module):
         Returns:
             Output features of shape (n_nodes, hidden_dim)
         """
-        # Generate queries from input features
-        queries = self.query_proj(x)  # (n_nodes, hidden_dim)
+                queries = self.query_proj(x)  # (n_nodes, hidden_dim)
         
-        # Generate keys and values from pathway embeddings
-        keys = self.key_proj(self.pathway_embeddings)  # (n_pathways, hidden_dim)
+                keys = self.key_proj(self.pathway_embeddings)  # (n_pathways, hidden_dim)
         values = self.value_proj(self.pathway_embeddings)  # (n_pathways, hidden_dim)
         
         # Compute attention scores
@@ -230,7 +225,6 @@ class PathwayAttention(nn.Module):
         output = self.layer_norm(x + output)
         
         return output
-
 
 class BreakthroughTAGTModel(nn.Module):
     """
@@ -355,7 +349,6 @@ class BreakthroughTAGTModel(nn.Module):
         # Stack outputs
         return torch.stack(outputs)
 
-
 # --- Training and Evaluation Functions ---
 def train_epoch(
     model: nn.Module,
@@ -417,7 +410,6 @@ def train_epoch(
         scheduler.step()
         
     return total_loss / len(dataloader)
-
 
 def evaluate(
     model: nn.Module,
@@ -485,7 +477,6 @@ def evaluate(
     metrics["tp"] = int(tp)
     
     return total_loss / len(dataloader), metrics
-
 
 def train_and_evaluate(
     model: nn.Module,
@@ -599,7 +590,6 @@ def train_and_evaluate(
         
     return history, best_metrics
 
-
 def cross_validate(
     n_genes: int,
     hidden_dim: int,
@@ -647,8 +637,7 @@ def cross_validate(
     # Prepare to collect metrics across folds
     all_metrics = []
     
-    # Create full dataset to get labels for stratification
-    full_dataset = SLEDataset(
+        full_dataset = SLEDataset(
         expression_path=EXPRESSION_PATH,
         clinical_path=CLINICAL_PATH,
         probe_list_path=PROBE_LIST_PATH,
@@ -659,8 +648,7 @@ def cross_validate(
     for fold, (train_idx, val_idx) in enumerate(skf.split(all_indices, full_dataset.labels)):
         logging.info(f"Starting fold {fold+1}/{n_splits}")
         
-        # Create datasets
-        train_dataset = SLEDataset(
+                train_dataset = SLEDataset(
             expression_path=EXPRESSION_PATH,
             clinical_path=CLINICAL_PATH,
             probe_list_path=PROBE_LIST_PATH,
@@ -674,8 +662,7 @@ def cross_validate(
             indices=val_idx
         )
         
-        # Create data loaders
-        train_loader = DataLoader(
+                train_loader = DataLoader(
             train_dataset,
             batch_size=BATCH_SIZE,
             shuffle=True,
@@ -689,26 +676,22 @@ def cross_validate(
             num_workers=NUM_WORKERS
         )
         
-        # Create model
-        model = BreakthroughTAGTModel(
+                model = BreakthroughTAGTModel(
             n_genes=n_genes,
             hidden_dim=hidden_dim,
             n_heads=n_heads,
             dropout=dropout
         ).to(DEVICE)
         
-        # Create loss function
-        criterion = FocalLoss(alpha=alpha, gamma=gamma)
+                criterion = FocalLoss(alpha=alpha, gamma=gamma)
         
-        # Create optimizer
-        optimizer = optim.AdamW(
+                optimizer = optim.AdamW(
             model.parameters(),
             lr=lr,
             weight_decay=weight_decay
         )
         
-        # Create scheduler
-        total_steps = len(train_loader) * EPOCHS // GRADIENT_ACCUMULATION_STEPS
+                total_steps = len(train_loader) * EPOCHS // GRADIENT_ACCUMULATION_STEPS
         warmup_steps = len(train_loader) * LR_WARMUP_EPOCHS // GRADIENT_ACCUMULATION_STEPS
         
         scheduler = OneCycleLR(
@@ -762,7 +745,6 @@ def cross_validate(
         
     return avg_metrics
 
-
 def main():
     """Main function to run the training."""
     logging.info("Starting breakthrough TAGT model training")
@@ -795,7 +777,6 @@ def main():
     logging.info(f"Final average AUC: {avg_metrics['auc']:.4f}")
     
     return avg_metrics
-
 
 if __name__ == "__main__":
     main()

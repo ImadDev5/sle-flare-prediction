@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Cleaned training script for TAGT model (no duplicate definitions)."""
 import torch
 import torch.nn as nn
@@ -271,7 +270,6 @@ def save_metrics(metrics: dict, epoch: int, phase: str):
     path = METRICS_OUTPUT_DIR / f"{phase}_epoch_{epoch}.json"
     with path.open("w") as f:
         json.dump(metrics, f, indent=4)
-
 
 def evaluate(model, loader, criterion, adj, epoch: int, phase: str = "val", threshold: float | None = None):
     model.eval()

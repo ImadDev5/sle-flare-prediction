@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Main training script for TAGT model"""
 import torch
 import torch.nn as nn
@@ -388,8 +387,7 @@ def main():
         sequences, labels, test_size=0.2, random_state=42, stratify=labels
     )
     
-    # Create datasets
-    train_dataset = SLEDataset(train_sequences, train_labels, adjacency_matrix)
+        train_dataset = SLEDataset(train_sequences, train_labels, adjacency_matrix)
     test_dataset = SLEDataset(test_sequences, test_labels, adjacency_matrix)
     
     train_loader = DataLoader(train_dataset, batch_size=8, shuffle=True)

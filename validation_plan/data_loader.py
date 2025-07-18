@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Real Data Loader for TAGT Validation
 Loads and processes GSE49454 and STRING data for validation
@@ -86,8 +85,7 @@ class RealDataLoader:
             if line.strip():
                 data_rows.append(line.split('\t'))
         
-        # Create DataFrame
-        df = pd.DataFrame(data_rows, columns=header)
+                df = pd.DataFrame(data_rows, columns=header)
         df = df.set_index(df.columns[0])  # First column is gene ID
         
         # Convert to numeric
@@ -96,8 +94,7 @@ class RealDataLoader:
         
         logger.info(f"Loaded expression data: {df.shape[0]} genes, {df.shape[1]} samples")
         
-        # Create labels based on sample information
-        labels = self._extract_labels_from_samples(sample_info)
+                labels = self._extract_labels_from_samples(sample_info)
         
         return df.T, labels  # Transpose so samples are rows
     
@@ -143,8 +140,7 @@ class RealDataLoader:
             if n_samples == 0:
                 n_samples = 100  # Default
             
-            # Create 30% SLE samples (realistic proportion)
-            n_sle = int(n_samples * 0.3)
+                        n_sle = int(n_samples * 0.3)
             labels = [1] * n_sle + [0] * (n_samples - n_sle)
             np.random.shuffle(labels)
         
@@ -216,8 +212,7 @@ class RealDataLoader:
         # For each sample, create a temporal sequence
         n_samples, n_features = X.shape
         
-        # Create temporal sequences by adding noise to simulate time progression
-        temporal_X = []
+                temporal_X = []
         temporal_y = []
         
         for i in range(n_samples):
@@ -258,8 +253,7 @@ def load_real_data():
         # Preprocess
         X, y = loader.preprocess_data(expression_data, labels)
         
-        # Create temporal sequences if needed
-        # X_temporal, y_temporal = loader.create_temporal_data(X, y)
+                # X_temporal, y_temporal = loader.create_temporal_data(X, y)
         
         logger.info(f"Successfully loaded real data: {X.shape[0]} samples, {X.shape[1]} features")
         logger.info(f"Class distribution: {np.sum(y)} SLE, {len(y) - np.sum(y)} controls")

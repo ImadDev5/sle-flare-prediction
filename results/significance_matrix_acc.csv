@@ -1,0 +1,7 @@
+,baseline_logistic_regression,baseline_lstm,baseline_random_forest,baseline_svm,tagt,tagt_cv
+baseline_logistic_regression,1.0,0.0,0.0228,0.0228,0.0008,0.0
+baseline_lstm,0.0,1.0,0.0,0.0,0.0,0.0
+baseline_random_forest,0.0228,0.0,1.0,2.0,0.0128,0.0
+baseline_svm,0.0228,0.0,2.0,1.0,0.0128,0.0
+tagt,0.0008,0.0,0.0128,0.0128,1.0,0.4542
+tagt_cv,0.0,0.0,0.0,0.0,0.4542,1.0

@@ -29,7 +29,6 @@ OUTPUT_DIR = Path(r"D:\SLE_data\processed\mapping")
 # Using a reliable mirror for GEO data
 GPL_ANNOTATION_URL = f"https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc={PLATFORM_ID}&targ=gpl&view=data&form=text"
 
-
 def get_gpl_annotation(platform_id: str) -> pd.DataFrame:
     """Fetches and parses the GPL annotation file from GEO."""
     logging.info(f"Fetching annotation for platform {platform_id} from GEO...")

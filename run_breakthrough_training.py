@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Breakthrough Training Runner
 
@@ -263,8 +262,7 @@ def create_enhanced_synthetic_data(n_samples=1000, n_genes=1000):
         
         labels.append(label)
     
-    # Create realistic adjacency matrix (protein-protein interactions)
-    adjacency = np.zeros((n_genes, n_genes))
+        adjacency = np.zeros((n_genes, n_genes))
     
     # Add pathway connections
     for pathway_genes in [immune_genes, inflammation_genes, interferon_genes]:
@@ -297,8 +295,7 @@ def train_breakthrough_model():
     """Train the breakthrough TAGT model."""
     logger.info("Starting breakthrough TAGT training...")
     
-    # Create enhanced data
-    sequences, labels, adjacency = create_enhanced_synthetic_data(n_samples=1000, n_genes=1000)
+        sequences, labels, adjacency = create_enhanced_synthetic_data(n_samples=1000, n_genes=1000)
     
     # Split data
     train_seq, temp_seq, train_labels, temp_labels = train_test_split(
@@ -311,18 +308,15 @@ def train_breakthrough_model():
     logger.info(f"Data splits - Train: {len(train_seq)}, Val: {len(val_seq)}, Test: {len(test_seq)}")
     logger.info(f"Flare rates - Train: {np.mean(train_labels):.3f}, Val: {np.mean(val_labels):.3f}, Test: {np.mean(test_labels):.3f}")
     
-    # Create datasets
-    train_dataset = EnhancedSLEDataset(train_seq, train_labels, adjacency, augment=True)
+        train_dataset = EnhancedSLEDataset(train_seq, train_labels, adjacency, augment=True)
     val_dataset = EnhancedSLEDataset(val_seq, val_labels, adjacency, augment=False)
     test_dataset = EnhancedSLEDataset(test_seq, test_labels, adjacency, augment=False)
     
-    # Create data loaders
-    train_loader = DataLoader(train_dataset, batch_size=16, shuffle=True)
+        train_loader = DataLoader(train_dataset, batch_size=16, shuffle=True)
     val_loader = DataLoader(val_dataset, batch_size=16, shuffle=False)
     test_loader = DataLoader(test_dataset, batch_size=16, shuffle=False)
     
-    # Create model
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+        device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     model = SimplifiedBreakthroughTAGT(n_genes=1000, hidden_dim=256, num_heads=8)
     model.to(device)
     

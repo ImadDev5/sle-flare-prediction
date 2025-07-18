@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 TAGT Validation Plan - Phase 1: Baseline Model Implementation
 Implement and test the baseline models mentioned in documentation
@@ -123,8 +122,7 @@ class BaselineModels:
             X_train, X_val = X_tensor[train_idx], X_tensor[val_idx]
             y_train, y_val = y_tensor[train_idx], y_tensor[val_idx]
             
-            # Create model
-            model = SimpleLSTM(input_size=X.shape[1])
+                        model = SimpleLSTM(input_size=X.shape[1])
             optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
             criterion = nn.BCELoss()
             
@@ -269,11 +267,9 @@ def create_synthetic_data(n_samples=200, n_features=1000, flare_rate=0.23):
     
     np.random.seed(42)
     
-    # Generate features (gene expression-like data)
-    X = np.random.randn(n_samples, n_features)
+        X = np.random.randn(n_samples, n_features)
     
-    # Generate labels (SLE flares)
-    n_flares = int(n_samples * flare_rate)
+        n_flares = int(n_samples * flare_rate)
     y = np.zeros(n_samples)
     y[:n_flares] = 1
     
@@ -293,15 +289,13 @@ def main():
     """Run baseline model validation"""
     logger.info("Starting baseline model validation...")
     
-    # Create synthetic data (replace with real data when available)
-    X, y = create_synthetic_data()
+        X, y = create_synthetic_data()
     
     # Run baseline comparison
     baseline_models = BaselineModels()
     results = baseline_models.run_baseline_comparison(X, y)
     
-    # Generate report
-    report = baseline_models.generate_comparison_report()
+        report = baseline_models.generate_comparison_report()
     
     # Save results
     import os

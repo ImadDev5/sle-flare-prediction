@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Realistic Performance Expectations for TAGT
 Based on literature review and dataset analysis
@@ -345,8 +344,7 @@ Based on literature review, dataset analysis, and methodological constraints, th
         realistic_mins = [realistic_ranges['tagt'][metric][0] for metric in metrics]
         realistic_maxs = [realistic_ranges['tagt'][metric][1] for metric in metrics]
         
-        # Create plot
-        fig, ax = plt.subplots(figsize=(12, 6))
+                fig, ax = plt.subplots(figsize=(12, 6))
         
         x = np.arange(len(metrics))
         width = 0.35
@@ -390,12 +388,10 @@ def main():
         }
     }
     
-    # Generate analysis
-    expectations = RealisticExpectations()
+        expectations = RealisticExpectations()
     report = expectations.generate_expectations_report(documented_claims)
     
-    # Create visualization
-    expectations.plot_expectations_vs_claims(documented_claims)
+        expectations.plot_expectations_vs_claims(documented_claims)
     
     # Save report
     import os

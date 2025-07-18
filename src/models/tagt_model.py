@@ -6,7 +6,6 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-
 class GraphConvolution(nn.Module):
     """Graph convolution layer for protein interaction modeling"""
     
@@ -26,7 +25,6 @@ class GraphConvolution(nn.Module):
         output = torch.spmm(adj, support)
         return self.dropout(F.relu(output))
 
-
 class TemporalAttention(nn.Module):
     """Multi-head attention for temporal sequence modeling"""
     
@@ -43,7 +41,6 @@ class TemporalAttention(nn.Module):
     def forward(self, x):
         attended, _ = self.attention(x, x, x)
         return self.norm(attended + x)
-
 
 class TAGTModel(nn.Module):
     """
@@ -134,7 +131,6 @@ class TAGTModel(nn.Module):
             probabilities = F.softmax(logits, dim=1)
             return probabilities[:, 1]  # Return flare probability
 
-
 class BaselineModel(nn.Module):
     """Simple baseline model for comparison"""
     
@@ -153,7 +149,6 @@ class BaselineModel(nn.Module):
     
     def forward(self, x):
         return self.classifier(x)
-
 
 def create_model(config):
     """Factory function to create TAGT model"""

@@ -13,8 +13,7 @@ except Exception as e:
 
 # Test 2: Sparse matrix conversion
 try:
-    # Create scipy sparse matrix
-    data = np.array([1, 2, 3])
+        data = np.array([1, 2, 3])
     row = np.array([0, 1, 2])
     col = np.array([0, 1, 2])
     scipy_sparse = sparse.coo_matrix((data, (row, col)), shape=(10, 10))

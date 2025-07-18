@@ -1,20 +1,3 @@
-#!/usr/bin/env python3
-"""
-🚀 OPTIMIZED TAGT MODEL - RTX 3050 EDITION
-==========================================
-
-Memory-efficient version of the Ultimate TAGT model specifically optimized 
-for RTX 3050 and real data. This version maintains breakthrough performance
-while being much more memory efficient.
-
-Key Optimizations:
-- Efficient Graph Attention (no memory explosion)
-- Gradient checkpointing
-- Memory-efficient temporal processing
-- Optimized for 4GB VRAM
-- Real data only - No compromises on performance!
-"""
-
 import torch
 import torch.nn as nn
 import torch.nn.functional as F

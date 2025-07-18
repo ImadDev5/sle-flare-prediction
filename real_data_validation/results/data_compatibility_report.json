@@ -1,0 +1,44 @@
+{
+  "datasets": [
+    "GSE49454",
+    "GSE99967"
+  ],
+  "gene_counts": {
+    "GSE49454": 177,
+    "GSE99967": 24733
+  },
+  "common_genes": 0,
+  "overlap_rate": 0.0,
+  "validation_results": {
+    "GSE49454": {
+      "n_samples": 378,
+      "n_genes": 177,
+      "n_cases": "128",
+      "n_controls": "250",
+      "case_rate": 0.3386243386243386,
+      "missing_values": "0",
+      "missing_rate": 0.0,
+      "expression_range": [
+        1.2656684348900098,
+        14.271063968017916
+      ],
+      "expression_mean": 7.8548154062692745,
+      "expression_std": 2.034123987393644
+    },
+    "GSE99967": {
+      "n_samples": 59,
+      "n_genes": 24733,
+      "n_cases": "0",
+      "n_controls": "59",
+      "case_rate": 0.0,
+      "missing_values": "0",
+      "missing_rate": 0.0,
+      "expression_range": [
+        2.252938516,
+        14.5793896
+      ],
+      "expression_mean": 6.1888761210943555,
+      "expression_std": 0.3479335153850532
+    }
+  }
+}

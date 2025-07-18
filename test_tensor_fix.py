@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Test script to validate tensor operations and sparse matrix handling.
 """
@@ -16,13 +15,11 @@ def test_sparse_tensor_conversion():
     """Test conversion from scipy sparse to PyTorch sparse tensor."""
     print("Testing sparse tensor conversion...")
     
-    # Create a sample scipy sparse matrix
-    n_genes = 100
+        n_genes = 100
     density = 0.1
     np.random.seed(42)
     
-    # Create random sparse matrix
-    data = np.random.random(int(n_genes * n_genes * density))
+        data = np.random.random(int(n_genes * n_genes * density))
     row = np.random.randint(0, n_genes, size=len(data))
     col = np.random.randint(0, n_genes, size=len(data))
     
@@ -44,21 +41,17 @@ def test_graph_conv_operations():
     """Test graph convolution operations with batched input."""
     print("\nTesting graph convolution operations...")
     
-    # Create test data
-    batch_size = 4
+        batch_size = 4
     n_genes = 100
     in_features = 1
     out_features = 64
     
-    # Create sparse adjacency matrix
-    torch_sparse = test_sparse_tensor_conversion()
+        torch_sparse = test_sparse_tensor_conversion()
     
-    # Create input tensor
-    x = torch.randn(batch_size, n_genes, in_features)
+        x = torch.randn(batch_size, n_genes, in_features)
     print(f"Input tensor shape: {x.shape}")
     
-    # Create linear layer
-    linear = torch.nn.Linear(in_features, out_features)
+        linear = torch.nn.Linear(in_features, out_features)
     
     try:
         # Apply linear transformation first
@@ -97,18 +90,15 @@ def test_model_forward():
         # Import our classes
         from train_real_data_model import GraphConv, ProductionTAGTModel
         
-        # Create test data
-        batch_size = 4
+                batch_size = 4
         n_genes = 100
         n_clinical = 5
         hidden_dim = 64
         
-        # Create model
-        model = ProductionTAGTModel(n_genes, n_clinical, hidden_dim)
+                model = ProductionTAGTModel(n_genes, n_clinical, hidden_dim)
         print(f"Created model with {sum(p.numel() for p in model.parameters())} parameters")
         
-        # Create test inputs
-        gene_expr = torch.randn(batch_size, n_genes)
+                gene_expr = torch.randn(batch_size, n_genes)
         clinical = torch.randn(batch_size, n_clinical)
         adj = test_sparse_tensor_conversion()
         

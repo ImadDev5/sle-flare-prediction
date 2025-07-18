@@ -1,0 +1,40 @@
+{
+  "GAT Model (best_model.pt)": {
+    "auc_roc": 0.0,
+    "accuracy": 0.0,
+    "error": "Error(s) in loading state_dict for GATModel:\n\tsize mismatch for clinical_encoder.0.weight: copying a param with shape torch.Size([64, 1]) from checkpoint, the shape in current model is torch.Size([32, 15]).\n\tsize mismatch for clinical_encoder.0.bias: copying a param with shape torch.Size([64]) from checkpoint, the shape in current model is torch.Size([32]).\n\tsize mismatch for classifier.0.weight: copying a param with shape torch.Size([64, 128]) from checkpoint, the shape in current model is torch.Size([64, 96])."
+  },
+  "TAGT Model (best_tagt_model.pt)": {
+    "auc_roc": 0.49774216837820084,
+    "accuracy": 0.3386243386243386,
+    "auc_scores": [
+      0.5079365079365079,
+      0.48010647240123283,
+      0.5051835247968619
+    ],
+    "acc_scores": [
+      0.3333333333333333,
+      0.3412698412698413,
+      0.3412698412698413
+    ]
+  },
+  "TAGT Model (final_tagt_model.pt)": {
+    "auc_roc": 0.49774216837820084,
+    "accuracy": 0.3386243386243386,
+    "auc_scores": [
+      0.5079365079365079,
+      0.48010647240123283,
+      0.5051835247968619
+    ],
+    "acc_scores": [
+      0.3333333333333333,
+      0.3412698412698413,
+      0.3412698412698413
+    ]
+  },
+  "Complex TAGT (tagt_model.pt)": {
+    "auc_roc": 0.0,
+    "accuracy": 0.0,
+    "error": "Error(s) in loading state_dict for ComplexTAGTModel:\n\tsize mismatch for input_projection.weight: copying a param with shape torch.Size([64, 1000]) from checkpoint, the shape in current model is torch.Size([128, 1000]).\n\tsize mismatch for input_projection.bias: copying a param with shape torch.Size([64]) from checkpoint, the shape in current model is torch.Size([128]).\n\tsize mismatch for classifier.0.weight: copying a param with shape torch.Size([64, 192]) from checkpoint, the shape in current model is torch.Size([64, 128])."
+  }
+}

@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 TAGT Validation Plan - Phase 2: TAGT Model Validation
 Test the actual TAGT model performance and validate claims
@@ -103,8 +102,7 @@ class TAGTValidator:
 
         logger.info(f"Model layers detected: {list(layer_info.keys())}")
 
-        # Create a model that matches the actual TAGT architecture
-        return self._create_real_tagt_model(state_dict)
+                return self._create_real_tagt_model(state_dict)
     
     def _create_default_tagt_model(self):
         """Create default TAGT model"""
@@ -531,11 +529,9 @@ def main():
     validator = TAGTValidator()
     results = validator.validate_model_performance(X, y)
 
-    # Generate report
-    report = validator.generate_validation_report()
+        report = validator.generate_validation_report()
 
-    # Generate plots
-    validator.plot_results()
+        validator.plot_results()
 
     # Save results
     os.makedirs('validation_plan/reports', exist_ok=True)

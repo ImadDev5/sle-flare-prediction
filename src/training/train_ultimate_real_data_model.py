@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 import os
 import sys
 import json
@@ -54,8 +52,7 @@ class SLEDataLoader(Dataset):
         # Data format transformation
         expression_tensor = torch.FloatTensor(expression).unsqueeze(0)  # [1, n_genes]
         
-        # Create comprehensive clinical features
-        clinical_features = [
+                clinical_features = [
             current_sledai,
             sequence.get('next_sledai', current_sledai) - current_sledai,  # SLEDAI change
             sequence.get('current_flare', 0),
@@ -132,8 +129,7 @@ class UltimateTrainer:
         """Train one fold of the cross-validation."""
         logger.info(f"Starting fold {fold+1} of cross-validation...")
         
-        # Create subset dataset loaders
-        train_dataset = torch.utils.data.Subset(full_dataset, train_idx)
+                train_dataset = torch.utils.data.Subset(full_dataset, train_idx)
         val_dataset = torch.utils.data.Subset(full_dataset, val_idx)
         
         train_loader = DataLoader(
@@ -147,8 +143,7 @@ class UltimateTrainer:
         model = create_ultimate_model(self.config)
         model.to(self.device)
         
-        # Create optimizer
-        optimizer = self.create_optimizer(model)
+                optimizer = self.create_optimizer(model)
         
         # Training loop
         best_val_auc = 0.0
@@ -232,6 +227,5 @@ if __name__ == "__main__":
     # Load configuration
     config_path = "configs/ultimate_tagt_config.json"
     
-    # Create trainer and run cross-validation
-    trainer = UltimateTrainer(config_path)
+        trainer = UltimateTrainer(config_path)
     trainer.cross_validate()

@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 import os
 import sys
 import json
@@ -51,8 +49,7 @@ class OptimizedSLEDataset(Dataset):
         expression = np.array(sequence['expression'], dtype=np.float32)
         current_sledai = float(sequence['current_sledai'])
         
-        # Create temporal sequence (single time step for memory efficiency)
-        gene_expression = torch.FloatTensor(expression).unsqueeze(0)  # [1, n_genes]
+                gene_expression = torch.FloatTensor(expression).unsqueeze(0)  # [1, n_genes]
         
         # Enhanced clinical features
         clinical_features = [
@@ -236,8 +233,7 @@ class OptimizedTrainer:
         dataset = self.load_data()
         train_loader, test_loader = self.create_data_loaders(dataset)
         
-        # Create model
-        model = create_optimized_model(self.config)
+                model = create_optimized_model(self.config)
         model.to(self.device)
         
         total_params = sum(p.numel() for p in model.parameters())
@@ -307,7 +303,7 @@ class OptimizedTrainer:
             # Save best model
             if test_auc > best_test_auc:
                 best_test_auc = test_auc
-        torch.save(model.state_dict(), 'results/best_optimized_model.pth')
+                torch.save(model.state_dict(), 'results/best_optimized_model.pth')
                 logger.info(f"New best model saved! AUC: {test_auc:.4f}")
         
         logger.info(f"Training completed! Best AUC: {best_test_auc:.4f}")
@@ -406,8 +402,7 @@ def main():
     with open(optimized_config_path, 'w') as f:
         json.dump(config, f, indent=2)
     
-    # Create trainer and start training
-    trainer = OptimizedTrainer(optimized_config_path)
+        trainer = OptimizedTrainer(optimized_config_path)
     results = trainer.train_model()
     
     logger.info("TRAINING COMPLETED SUCCESSFULLY!")

@@ -58,11 +58,9 @@ def prepare_adjacency_matrix():
     final_probe_list = sorted(id_mapping_df['ProbeID'].unique().tolist()) # Sort for reproducibility
     n_genes = len(final_probe_list)
     
-    # Create a mapping from the probe ID to its index in the adjacency matrix
-    probe_to_idx = {probe: i for i, probe in enumerate(final_probe_list)}
+        probe_to_idx = {probe: i for i, probe in enumerate(final_probe_list)}
     
-    # Create a mapping from the STRING ID to the matrix index. The index is now unique.
-    string_id_to_idx = id_mapping_df.set_index('StringID')['ProbeID'].map(probe_to_idx)
+        string_id_to_idx = id_mapping_df.set_index('StringID')['ProbeID'].map(probe_to_idx)
     
     logging.info(f"Final network will have {n_genes} nodes (genes/probes).")
     
@@ -155,4 +153,3 @@ def prepare_adjacency_matrix():
 
 if __name__ == "__main__":
     prepare_adjacency_matrix()
-

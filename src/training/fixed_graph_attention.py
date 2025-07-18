@@ -109,7 +109,6 @@ class FixedGraphAttentionLayer(nn.Module):
         
         return F.elu(h_prime)
 
-
 class MultiScaleGraphAttention(nn.Module):
     """
     Multi-scale graph attention module that captures both local and global interactions.

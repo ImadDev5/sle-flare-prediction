@@ -19,74 +19,67 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+MANIFEST
 
-# Data files
-*.csv
-*.h5
-*.pkl
-*.npy
-data/raw/*
-!data/raw/.gitkeep
+# PyTorch
+*.pth
+*.pt
+*.ckpt
 
-# Models
-models/*.pt
-models/*.pth
-*.onnx
+# Jupyter Notebook
+.ipynb_checkpoints
 
-# Results
-results/temp/
-*.log
+# Environment
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
 
 # IDE
 .vscode/
 .idea/
 *.swp
 *.swo
+*~
 
 # OS
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
 
-# Jupyter
-.ipynb_checkpoints/
-
-# Additional patterns
-*.pkl
-*.npy
+# Data files (large datasets)
+*.gz
+*.zip
+*.tar
 *.h5
-*.pt
-*.pth
-checkpoints/
+*.hdf5
+
+# Logs
+*.log
 logs/
+
+# Temporary files
+tmp/
 temp/
-*.tmp
+.tmp/
 
-# IDE and OS
-.vscode/
-.idea/
-*.swp
-*.swo
-.DS_Store
-Thumbs.db
+# Model checkpoints (keep only best)
+models/*.pth
+models/*.pt
+!models/best_*.pth
+!models/best_*.pt
 
-# Python cache
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
+# Results (keep summaries only)
+results/detailed/
+results/temp/
+
+# Cache
+.cache/
+.pytest_cache/

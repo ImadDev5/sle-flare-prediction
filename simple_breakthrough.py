@@ -13,7 +13,6 @@ print("="*50)
 np.random.seed(42)
 torch.manual_seed(42)
 
-# Create enhanced synthetic data
 def create_data(n_samples=800, n_genes=1000):
     print(f"Creating enhanced data: {n_samples} samples, {n_genes} genes")
     
@@ -90,7 +89,6 @@ class BreakthroughModel(nn.Module):
     def forward(self, x):
         return self.layers(x)
 
-# Create data
 X, y = create_data()
 print(f"Data created - Shape: {X.shape}, Flare rate: {y.mean():.3f}")
 

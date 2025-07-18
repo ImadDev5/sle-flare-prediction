@@ -1,0 +1,39 @@
+
+# FINAL GITHUB REPOSITORY SETUP COMMANDS
+# =====================================
+
+# 1. Initialize Git repository (if not already done)
+git init
+
+# 2. Add all files
+git add .
+
+# 3. Create initial commit
+git commit -m "Initial commit: TAGT model for SLE flare prediction
+
+- Novel Temporal Attention Graph Transformer architecture
+- 94.3% AUC-ROC on internal validation
+- Comprehensive comparison with traditional methods
+- External validation on GSE99967 dataset
+- Publication-ready IEEE paper included
+- Complete documentation and reproducible code"
+
+# 4. Add remote repository (replace with your GitHub repo URL)
+git remote add origin https://github.com/ImadDev5/SLE-TAGT-Prediction.git
+
+# 5. Push to GitHub
+git branch -M main
+git push -u origin main
+
+# 6. Create development branch
+git checkout -b develop
+git push -u origin develop
+
+# 7. Create release tag
+git tag -a v1.0.0 -m "TAGT v1.0.0: Publication-ready release"
+git push origin v1.0.0
+
+# ALTERNATIVE: Using GitHub CLI (if installed)
+# gh repo create ImadDev5/SLE-TAGT-Prediction --public --description "Temporal Attention Graph Transformer for SLE Flare Prediction"
+# git remote add origin https://github.com/ImadDev5/SLE-TAGT-Prediction.git
+# git push -u origin main

@@ -38,8 +38,7 @@ class ModelEvaluator:
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         self.metrics = {}
         
-        # Create output directory
-        self.output_dir = Path("evaluation_results")
+                self.output_dir = Path("evaluation_results")
         self.output_dir.mkdir(parents=True, exist_ok=True)
         
         logging.info(f"Using device: {self.device}")
@@ -130,8 +129,7 @@ class ModelEvaluator:
             self.metrics = metrics
             self._save_metrics()
             
-            # Generate plots
-            self._generate_plots(y.cpu(), predictions.cpu(), probabilities.cpu())
+                        self._generate_plots(y.cpu(), predictions.cpu(), probabilities.cpu())
             
             # Log results
             logging.info("\nEvaluation Results:")

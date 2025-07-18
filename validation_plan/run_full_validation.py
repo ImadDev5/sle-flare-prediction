@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 TAGT Comprehensive Validation Plan - Master Execution Script
 Runs all validation phases and generates final assessment
@@ -12,7 +11,6 @@ import pandas as pd
 from datetime import datetime
 import traceback
 
-# Setup logging
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
@@ -385,8 +383,7 @@ def main():
         # Phase 3: Comprehensive Analysis
         validator.run_phase_3_comprehensive_analysis()
         
-        # Generate final report
-        final_report = validator.save_results()
+                final_report = validator.save_results()
         
         logger.info("="*80)
         logger.info("VALIDATION COMPLETED")
@@ -403,8 +400,7 @@ def main():
         logger.error(f"Validation failed with error: {e}")
         logger.error(traceback.format_exc())
         
-        # Generate error report
-        error_report = f"""
+                error_report = f"""
 # TAGT VALIDATION ERROR REPORT
 **Generated**: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
 **Status**: VALIDATION FAILED

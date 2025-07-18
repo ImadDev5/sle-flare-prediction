@@ -26,8 +26,7 @@ class ModelDeployer:
         self.config_path = config_path
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         
-        # Create deployment directory
-        self.deployment_dir = Path("deployment")
+                self.deployment_dir = Path("deployment")
         self.deployment_dir.mkdir(parents=True, exist_ok=True)
         
         logging.info(f"Using device: {self.device}")
@@ -183,14 +182,11 @@ class ModelDeployer:
             # Load and optimize model
             model = self.load_model()
             
-            # Create configuration
-            config = self.create_config()
+                        config = self.create_config()
             
-            # Create API specification
-            api_spec = self.create_api_spec()
+                        api_spec = self.create_api_spec()
             
-            # Create deployment package
-            package = {
+                        package = {
                 'model': str(self.deployment_dir / 'model.pt'),
                 'config': str(self.deployment_dir / 'config.json'),
                 'api_spec': str(self.deployment_dir / 'api_spec.yaml'),

@@ -44,18 +44,15 @@ class GraphConv(nn.Module):
 
 # Test the GraphConv layer
 if __name__ == '__main__':
-    # Create a dummy adjacency matrix
-    adj_scipy = scipy.sparse.random(100, 100, density=0.1, format='csr')
+        adj_scipy = scipy.sparse.random(100, 100, density=0.1, format='csr')
     adj_coo = adj_scipy.tocoo()
     indices = torch.tensor(np.vstack((adj_coo.row, adj_coo.col)), dtype=torch.long)
     values = torch.tensor(adj_coo.data, dtype=torch.float32)
     adj_torch = torch.sparse_coo_tensor(indices, values, adj_coo.shape, dtype=torch.float32).coalesce()
 
-    # Create a dummy input tensor
-    x = torch.randn(32, 100, 1)
+        x = torch.randn(32, 100, 1)
 
-    # Create a GraphConv layer
-    graph_conv = GraphConv(1, 128)
+        graph_conv = GraphConv(1, 128)
 
     # Pass the input through the layer
     output = graph_conv(x, adj_torch)

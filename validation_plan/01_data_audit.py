@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 TAGT Validation Plan - Phase 1: Data Audit & Baseline Establishment
 """
@@ -10,7 +9,6 @@ import gzip
 from pathlib import Path
 import logging
 
-# Setup logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
@@ -253,8 +251,7 @@ class DataAuditor:
         self.audit_results['processed'] = self.audit_processed_data()
         self.audit_results['model_usage'] = self.check_current_model_data_usage()
         
-        # Generate report
-        report = f"""
+                report = f"""
 # TAGT DATA AUDIT REPORT
 Generated: {pd.Timestamp.now()}
 

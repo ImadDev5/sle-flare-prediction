@@ -1,0 +1,23 @@
+ROC Curve Analysis Summary Report
+==================================================
+
+Analysis Date: 2025-07-06 05:34:35
+Number of Models: 2
+
+Model Performance Summary:
+------------------------------
+ 1. Breakthrough TAGT   : AUC = 1.0000 ± 0.0000 (n=2) [simulated]
+ 2. TAGT (CV)           : AUC = 0.9430 ± 0.0206 (n=5) [simulated]
+
+Confidence Intervals (95%):
+------------------------------
+Breakthrough TAGT   : [1.0000, 1.0000]
+TAGT (CV)           : [0.9175, 0.9685]
+
+Analysis Notes:
+---------------
+• ROC curves interpolated to common FPR grid (101 points)
+• Confidence intervals computed using t-distribution
+• Individual fold curves shown as faint lines
+• Shaded regions represent 95% confidence intervals
+• Simulated ROC curves (from AUC values): TAGT (CV), Breakthrough TAGT

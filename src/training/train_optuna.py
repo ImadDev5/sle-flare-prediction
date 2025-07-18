@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Hyper-parameter optimisation of TAGT model with focal loss + 5-fold CV.
 
 This script searches over architecture + optimisation hyper-parameters using
@@ -76,7 +75,6 @@ class FocalLoss(nn.Module):
             return focal_loss.mean()
         return focal_loss.sum()
 
-
 # ---------- Configuration ------------------------------------------------- #
 
 # Override gene limit globally for train_clean before any Dataset is created
@@ -89,7 +87,6 @@ MAX_EPOCHS = 60
 EARLY_PATIENCE = 10
 BATCH_SIZE = 2  # lower batch to curb VRAM
 NUM_WORKERS = 0  # Windows
-
 
 STUDY_DIR = Path("optuna_studies")
 STUDY_DIR.mkdir(exist_ok=True)
@@ -121,7 +118,6 @@ def set_seed(seed: int):
     np.random.seed(seed)
     if torch.cuda.is_available():
         torch.cuda.manual_seed_all(seed)
-
 
 # ---------- Objective ----------------------------------------------------- #
 
@@ -236,7 +232,6 @@ def objective(trial: optuna.Trial) -> float:
     mean_f1 = float(np.mean(fold_f1s))
     return mean_f1  # maximise
 
-
 # ---------- Main ---------------------------------------------------------- #
 
 def main():
@@ -267,8 +262,7 @@ def main():
     # Train final model with best parameters
     logging.info("Training final model with best parameters")
     
-    # Create model with best parameters
-    best_model = BreakthroughTAGTModel(
+        best_model = BreakthroughTAGTModel(
         n_genes=MAX_GENES_OPT,
         hidden_dim=study.best_params["hidden_dim"],
         n_heads=study.best_params["n_heads"],
@@ -289,7 +283,6 @@ def main():
         json.dump(model_info, f, indent=4)
         
     logging.info("Model information saved to models/breakthrough_model_info.json")
-
 
 if __name__ == "__main__":
     main()

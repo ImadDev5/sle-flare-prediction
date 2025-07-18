@@ -1,22 +1,3 @@
-#!/usr/bin/env python3
-"""
-🚀 ULTIMATE TAGT MODEL - REAL DATA ONLY
-=============================================
-
-The most advanced Temporal Attention Graph Transformer for SLE flare prediction.
-Uses ONLY real GSE49454 genomic data + STRING PPI network.
-
-Architecture Features:
-- Multi-Head Graph Attention with edge features
-- Hierarchical Temporal Processing
-- Cross-Modal Fusion (genomic + clinical)
-- Pathway-Aware Attention
-- Advanced Regularization
-- RTX 3050 Optimized
-
-NO SYNTHETIC DATA - ONLY REAL BREAKTHROUGH RESULTS!
-"""
-
 import torch
 import torch.nn as nn
 import torch.nn.functional as F

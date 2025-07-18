@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Main training script for TAGT model"""
 import pandas as pd
 import numpy as np
@@ -95,8 +94,7 @@ def feature_importance_analysis():
         idx = indices[i]
         print(f"  {i+1:2d}. {feature_names[idx]:<15} : {importance[idx]:.4f}")
     
-    # Create feature importance plot
-    plt.figure(figsize=(12, 8))
+        plt.figure(figsize=(12, 8))
     top_n = 15
     top_indices = indices[:top_n]
     
@@ -124,8 +122,7 @@ def error_analysis():
     labels = np.load("data/integrated/labels.npy")
     sequences = sequences_df.to_dict('records')
     
-    # Create a simple model for error analysis
-    features = []
+        features = []
     for seq in sequences:
         feature_vector = np.concatenate([
             seq['expression'][:100],  # Top 100 genes
@@ -291,8 +288,7 @@ def create_comprehensive_comparison():
         print("No results found to compare!")
         return
     
-    # Create comparison DataFrame
-    comparison_data = []
+        comparison_data = []
     for model_name, metrics in all_results.items():
         comparison_data.append({
             'Model': model_name,
@@ -305,8 +301,7 @@ def create_comprehensive_comparison():
     
     df = pd.DataFrame(comparison_data)
     
-    # Create comprehensive comparison plot
-    fig, axes = plt.subplots(2, 3, figsize=(18, 12))
+        fig, axes = plt.subplots(2, 3, figsize=(18, 12))
     fig.suptitle('Comprehensive Model Comparison', fontsize=16)
     
     metrics = ['Accuracy', 'Precision', 'Recall', 'F1-Score', 'AUC-ROC']
@@ -355,8 +350,7 @@ def main():
     print("COMPREHENSIVE DATA ANALYSIS FOR SLE FLARE PREDICTION")
     print("="*80)
     
-    # Create output directory for plots
-    import os
+        import os
     os.makedirs('analysis_plots', exist_ok=True)
     os.chdir('analysis_plots')
     

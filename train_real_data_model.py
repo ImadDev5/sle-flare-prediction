@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 import os
 import sys
 import gzip
@@ -21,7 +19,6 @@ import time
 import gc
 from datetime import datetime
 
-# Setup logging
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s'
@@ -86,8 +83,7 @@ class RealDataProcessor:
                     gene_ids.append(gene_id)
                     expression_data.append(values)
             
-            # Create DataFrame with explicit float64 dtype
-            df = pd.DataFrame(expression_data, index=gene_ids, columns=sample_ids, dtype=np.float64)
+                        df = pd.DataFrame(expression_data, index=gene_ids, columns=sample_ids, dtype=np.float64)
             df = df.dropna(thresh=len(sample_ids) * 0.8).fillna(df.median())
             
             # Ensure all values are numeric
@@ -149,15 +145,13 @@ class RealDataProcessor:
                 existing_class = list(class_counts.keys())[0]
                 new_class = 1 if existing_class == 0 else 0
                 
-                # Create synthetic samples (10% of the dataset)
-                num_synthetic = max(int(len(df) * 0.1), 5)
+                                num_synthetic = max(int(len(df) * 0.1), 5)
                 
                 # Sample rows to duplicate and modify
                 sample_indices = np.random.choice(df.index, num_synthetic, replace=False)
                 
                 for idx in sample_indices:
-                    # Create a copy of the row with a different class label
-                    new_row = df.loc[idx].copy()
+                                        new_row = df.loc[idx].copy()
                     new_row['sle_flare'] = new_class
                     
                     # Add some noise to the features to make them different
@@ -515,8 +509,7 @@ def train_production_model():
 
         logger.info(f"Loaded data: {expression_df.shape[1]} samples, {expression_df.shape[0]} genes")
 
-        # Create PPI mapping and adjacency matrix
-        logger.info("Creating PPI mapping and adjacency matrix...")
+                logger.info("Creating PPI mapping and adjacency matrix...")
         ppi_mapping = processor.create_ppi_mapping()
         if not ppi_mapping:
             logger.warning("PPI mapping is empty. The model will run without graph information.")
@@ -524,8 +517,7 @@ def train_production_model():
         adjacency_matrix = processor.create_memory_optimized_adjacency(expression_df.index.tolist(), ppi_mapping)
         logger.info(f"Successfully created PPI mapping and adjacency matrix. Shape: {adjacency_matrix.shape}")
         
-        # Create dataset
-        logger.info("Creating dataset and dataloaders...")
+                logger.info("Creating dataset and dataloaders...")
         dataset = ProductionSLEDataset(expression_df, clinical_df, adjacency_matrix)
         logger.info("Successfully created dataset.")
     except Exception as e:
@@ -542,8 +534,7 @@ def train_production_model():
     train_dataset = torch.utils.data.Subset(dataset, train_indices)
     val_dataset = torch.utils.data.Subset(dataset, val_indices)
 
-    # Create a separate test set from the full dataset, ensuring no overlap with train/val
-    remaining_indices = list(set(range(len(dataset))) - set(train_indices) - set(val_indices))
+        remaining_indices = list(set(range(len(dataset))) - set(train_indices) - set(val_indices))
     test_dataset = torch.utils.data.Subset(dataset, remaining_indices)
 
     # Data loaders

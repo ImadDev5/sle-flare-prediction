@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Main training script for TAGT model"""
 import torch
 import torch.nn as nn

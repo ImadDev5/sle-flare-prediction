@@ -11,7 +11,6 @@ import torch.nn.functional as F
 import numpy as np
 from sklearn.metrics import pairwise_distances
 
-
 class FocalLoss(nn.Module):
     """
     Dynamic Focal Loss for imbalanced classification
@@ -80,7 +79,6 @@ class FocalLoss(nn.Module):
             return loss.sum()
         else:
             return loss
-
 
 class DynamicFocalLoss(FocalLoss):
     """
@@ -151,7 +149,6 @@ class DynamicFocalLoss(FocalLoss):
             self.gamma = new_gamma
             
         return {'alpha': self.alpha, 'gamma': self.gamma}
-
 
 class CommunityPreservationLoss(nn.Module):
     """
@@ -263,7 +260,6 @@ class CommunityPreservationLoss(nn.Module):
         
         return loss
 
-
 class TopoLossV2(nn.Module):
     """
     TopoLoss v2
@@ -343,7 +339,6 @@ class TopoLossV2(nn.Module):
         total_loss = self.adjacency_weight * adjacency_loss + self.community_weight * comm_loss
         
         return total_loss
-
 
 class MultiTaskLoss(nn.Module):
     """
@@ -462,7 +457,6 @@ class MultiTaskLoss(nn.Module):
                 self.weights = {task: weight * norm_factor for task, weight in new_weights.items()}
         
         return self.weights
-
 
 def get_loss_function(loss_type, **kwargs):
     """

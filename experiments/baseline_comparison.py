@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Main training script for TAGT model"""
 import pandas as pd
 import numpy as np
@@ -27,8 +26,7 @@ class LSTMDataset(Dataset):
     
     def __getitem__(self, idx):
         sequence = self.sequences[idx]
-        # Create a simple temporal sequence (current features + clinical data)
-        features = np.concatenate([
+                features = np.concatenate([
             sequence['expression'],
             [sequence['current_sledai']]
         ])
@@ -194,8 +192,7 @@ def train_lstm_model(sequences_train, sequences_test, y_train, y_test):
     print("TRAINING LSTM BASELINE MODEL")
     print("="*60)
     
-    # Create datasets
-    train_dataset = LSTMDataset(sequences_train, y_train)
+        train_dataset = LSTMDataset(sequences_train, y_train)
     test_dataset = LSTMDataset(sequences_test, y_test)
     
     train_loader = DataLoader(train_dataset, batch_size=8, shuffle=True)

@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Breakthrough Training Script for TAGT Model v2
 
@@ -124,8 +123,7 @@ class SLEDataset(Dataset):
         current_sledai = sequence['current_sledai']
         next_sledai = sequence['next_sledai']
         
-        # Create temporal sequence (current state only for now)
-        gene_expression = torch.FloatTensor(expression).unsqueeze(0)  # [1, n_genes]
+                gene_expression = torch.FloatTensor(expression).unsqueeze(0)  # [1, n_genes]
         
         # Clinical features
         clinical_features = torch.FloatTensor([
@@ -234,8 +232,7 @@ class BreakthroughTrainer:
         logger.info(f"Data splits - Train: {len(train_seq)}, Val: {len(val_seq)}, Test: {len(test_seq)}")
         logger.info(f"Class distribution - Train: {np.mean(train_labels):.3f}, Val: {np.mean(val_labels):.3f}, Test: {np.mean(test_labels):.3f}")
         
-        # Create datasets
-        train_dataset = SLEDataset(train_seq, train_labels, adjacency, augment=True)
+                train_dataset = SLEDataset(train_seq, train_labels, adjacency, augment=True)
         val_dataset = SLEDataset(val_seq, val_labels, adjacency, augment=False)
         test_dataset = SLEDataset(test_seq, test_labels, adjacency, augment=False)
         
@@ -248,8 +245,7 @@ class BreakthroughTrainer:
         sample_weights = [class_weights[int(label)] for label in train_labels]
         sampler = WeightedRandomSampler(sample_weights, len(sample_weights))
         
-        # Create data loaders
-        train_loader = DataLoader(
+                train_loader = DataLoader(
             train_dataset, batch_size=self.batch_size, sampler=sampler,
             num_workers=0, pin_memory=True if torch.cuda.is_available() else False
         )
@@ -406,13 +402,11 @@ class BreakthroughTrainer:
         """Main training loop."""
         logger.info("Starting breakthrough training...")
         
-        # Create data loaders
-        train_loader, val_loader, test_loader = self.create_data_loaders(
+                train_loader, val_loader, test_loader = self.create_data_loaders(
             sequences, labels, adjacency
         )
         
-        # Create model
-        model = create_breakthrough_model(self.config)
+                model = create_breakthrough_model(self.config)
         model.to(self.device)
         
         logger.info(f"Model parameters: {sum(p.numel() for p in model.parameters()):,}")
@@ -521,8 +515,7 @@ def create_synthetic_data() -> Tuple[List[Dict], np.ndarray, np.ndarray]:
     n_genes = 1000
     n_patients = 100
     
-    # Create synthetic sequences
-    sequences = []
+        sequences = []
     labels = []
     
     for i in range(n_samples):
@@ -563,8 +556,7 @@ def create_synthetic_data() -> Tuple[List[Dict], np.ndarray, np.ndarray]:
         
         labels.append(label)
     
-    # Create synthetic adjacency matrix
-    adjacency = np.random.random((n_genes, n_genes))
+        adjacency = np.random.random((n_genes, n_genes))
     adjacency = (adjacency + adjacency.T) / 2  # Make symmetric
     adjacency = (adjacency > 0.95).astype(float)  # Sparse network
     np.fill_diagonal(adjacency, 1.0)
@@ -598,8 +590,7 @@ def main():
     # Load data
     sequences, labels, adjacency = load_real_data()
     
-    # Create trainer
-    trainer = BreakthroughTrainer(config)
+        trainer = BreakthroughTrainer(config)
     
     # Train model
     results = trainer.train(sequences, labels, adjacency)

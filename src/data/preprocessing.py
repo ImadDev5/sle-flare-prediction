@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Main training script for TAGT model"""
 import pandas as pd
 import numpy as np
@@ -26,7 +25,6 @@ print(f"   Expression shape: {expression_df.shape}")
 print(f"   Clinical samples: {len(clinical_df)}")
 print(f"   PPI network: {adj_matrix.shape}")
 
-# Create temporal sequences
 print("\n2. Creating temporal sequences...")
 patients = clinical_df['patient_id'].unique()
 sequences = []
@@ -46,8 +44,7 @@ for patient in patients:
             if sample_id in expression_df.index:
                 expression_vector = expression_df.loc[sample_id].values
 
-                # Create sequence entry
-                sequences.append({
+                                sequences.append({
                     'patient_id': patient,
                     'visit_from': current_visit['visit'],
                     'visit_to': next_visit['visit'],
@@ -83,7 +80,6 @@ np.save(os.path.join(output_dir, "adjacency_matrix.npy"), adj_matrix)
 with open(os.path.join(output_dir, "gene_list.pkl"), 'wb') as f:
     pickle.dump(gene_list, f)
 
-# Create data statistics
 print("\n4. Dataset statistics:")
 print(f"   Total sequences: {len(sequences)}")
 print(f"   Positive samples (flares): {sum(labels)} ({sum(labels)/len(labels)*100:.1f}%)")

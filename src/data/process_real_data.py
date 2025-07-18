@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Real Data Processing Pipeline for TAGT Breakthrough Model
 
@@ -55,8 +54,7 @@ class RealDataProcessor:
         self.processed_dir = self.data_dir / "processed"
         self.integrated_dir = self.data_dir / "integrated"
         
-        # Create directories
-        for dir_path in [self.processed_dir, self.integrated_dir]:
+                for dir_path in [self.processed_dir, self.integrated_dir]:
             dir_path.mkdir(parents=True, exist_ok=True)
             
         # Initialize gene mapping service
@@ -108,8 +106,7 @@ logger.error("Data table not found in series matrix file")
             if line.strip():
                 data_rows.append(line.strip().split('\t'))
         
-        # Create DataFrame
-        header = data_rows[0]
+                header = data_rows[0]
         df = pd.DataFrame(data_rows[1:], columns=header)
         
         # Clean up column names
@@ -219,8 +216,7 @@ logger.error("Data table not found in series matrix file")
         # Filter expression data to common genes
         filtered_expression = expression_df.loc[common_genes]
         
-        # Create adjacency matrix for common genes
-        gene_to_idx = {gene: i for i, gene in enumerate(common_genes)}
+                gene_to_idx = {gene: i for i, gene in enumerate(common_genes)}
         n_genes = len(common_genes)
         adjacency = np.zeros((n_genes, n_genes))
         

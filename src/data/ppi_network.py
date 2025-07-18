@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Main training script for TAGT model"""
 import pandas as pd
 import numpy as np
@@ -17,12 +16,10 @@ expression_df = pd.read_csv(r"D:\SLE_data\processed\expression_normalized.csv", 
 genes = expression_df.index.tolist()
 print(f"   Found {len(genes)} genes")
 
-# Create a scale-free network (realistic for biological networks)
 print("\n2. Creating scale-free PPI network...")
 n_genes = len(genes)
 n_edges = int(n_genes * 3)  # Average degree ~6 (typical for PPI networks)
 
-# Create Barabási-Albert scale-free network
 G = nx.barabasi_albert_graph(n_genes, 3)
 
 # Add some additional edges to increase connectivity
@@ -49,7 +46,6 @@ for i, j in edges:
     adj_matrix[i, j] = weight
     adj_matrix[j, i] = weight
 
-# Create gene mapping
 gene_to_idx = {gene: idx for idx, gene in enumerate(genes)}
 
 # Save the network
